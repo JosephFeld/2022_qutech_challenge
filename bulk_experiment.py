@@ -11,6 +11,10 @@ from quantuminspire.projectq.backend_qx import QIBackend
 
 import matplotlib.pyplot as plt
 
+# h = ry pi/2, rx pi
+
+# same as rz pi, ry pi/2
+
 # Return engine
 def login(authentication):
 
@@ -60,7 +64,7 @@ if __name__ == "__main__":
 
     authentication = get_authentication()
 
-    num_runs = 20
+    num_runs = 1
 
     try:
 

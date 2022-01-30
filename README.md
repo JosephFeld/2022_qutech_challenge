@@ -1,25 +1,24 @@
-# Committttttttted
-
-# QuTech Challenges @ MIT iQuHACK 2022
-
-<p align="left">
-  <a href="https://qutech.nl" target="_blank"><img src="https://user-images.githubusercontent.com/10100490/151484481-7cedb7da-603e-43cc-890c-979fb66aeb60.png" width="25%" style="padding-right: 0%"/></a>
-  <a href="https://iquhack.mit.edu/" target="_blank"><img src="https://user-images.githubusercontent.com/10100490/151647370-d161d5b5-119c-4db9-898e-cfb1745a8310.png" width="10%" style="padding-left: 0%"/> </a>
-</p>
+# Quantum Error Correction
+#### David Vulakh, Anna Rose Osofsky, Jacob Prtizker, Joseph Feld
 
 
-## Description 
 
-For the 2022 edition of the iQuHack (interdisciplinary Quantum HACKathon), [QuTech](https://qutech.nl) has partnered with the team at MIT to propose 2 challenges, hosted in our own multi-hardware Quantum Technology platform, [Quantum Inspire](https://www.quantum-inspire.com). These aim to draw participants to the challenges at the heart of our mission: to develop scalable prototypes of a quantum computer and an inherently safe quantum internet, based on the fundamental laws of quantum mechanics.
+## QPM Ordering
 
-To qualify for the QuTech Division Challenge, participants should submit a project that addresses either the proposed Quantum Error Correction (QEC) challenge or the Quantum Key Distribution (QKD) challenge. Detailed descriptions of these two challenges and their goals are available in the documents linked below (hosted in this repository):
+The QPM ([Quantum Parity Measurement](https://en.wikipedia.org/wiki/Parity_measurement)) is an important component of the 5-qubit error correcting code. We don't have enough qubits on the starmon-5 to implement the full 5-qubit code's parity measurement, so we investigated a simple case of 2 qubits: using a controlled X on the first qubit and a controlled Z on the second. These operations are commutative, so we can swap them without changing the actual logic. However, perhaps these could have an effect on the noise. Here are the results from our comparison:  
 
-- [Quantum Error Correction Challenge](https://github.com/iQuHACK/2022_qutech_challenge/blob/main/QuantumErrorCorrectionChallenge.pdf)
-- [Quantum Key Distribution Challenge](https://github.com/iQuHACK/2022_qutech_challenge/blob/main/QuantumKeyDistrubutionChallenge.pdf)
+###CZ then CNOT
 
+![CZ then CNOT](circuit-CZ%20then%20CNOT.png)
 
-## Scoring and Submission
+![CZ then CNOT histogram](cz%20then%20cnot%20histo.PNG)
 
-**Rubric:** https://docs.google.com/document/u/1/d/e/2PACX-1vR5PVoInN_Fi42lIOchhblgGBPblgNyouj1XHukonZ4sdqY-p5ulS9TxdzvddEcDNFc5k_6teFyKzXv/pub
+###CNOT then CZ
 
-**Submission:** Please visit https://iquhack.mit.edu/ for details on how to submit your project.
+![CNOT then CZ](circuit-CNOT%20then%20CZ.png)
+
+![CZ then CNOT histogram](cnot%20then%20cz%20histo.PNG)
+
+###Analysis
+
+In the 4 clearly erroneous measurements, the CNOT then CZ case has a higher incidence of all except one, so it appears doing the CZ then CNOT is better.
