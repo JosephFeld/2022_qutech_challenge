@@ -1,0 +1,10 @@
+version 1.0
+
+qubits 5
+
+{prep_z q[0] | prep_z q[2]}
+
+h q[0]
+CZ q[2],q[0]
+h q[0]
+measure q[0]
