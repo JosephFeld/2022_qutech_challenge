@@ -30,9 +30,9 @@ q2 = qubits[-1]
 StatePreparation([(x := random.uniform(0, 1)), (y := math.sqrt(1 - x*x))]) | q2
 print(f"original state: {x} {y}")
 
-H | q1
+H  | q1
 CZ | (q1, q2)
-H | q1
+H  | q1
 All(Measure) | qubits  # measure the qubits
 
 engine.flush()  # flush all gates (and execute measurements)

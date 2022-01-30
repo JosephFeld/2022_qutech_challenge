@@ -84,4 +84,4 @@ SWAP q[2],q[3]
 SWAP q[2],q[0]
 X q[3]
 .Measurement
-#measure_all
+measure_all
