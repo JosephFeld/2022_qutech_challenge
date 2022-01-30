@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
 import logging
+import random
+import math
 import os
 
 from projectq import MainEngine
 from projectq.setups import linear
-from projectq.ops import H, Rx, Rz, CNOT, CZ, Measure, All
+from projectq.ops import H, Rx, Rz, CNOT, CZ, Measure, All, StatePreparation
 
 from quantuminspire.credentials import get_authentication
 from quantuminspire.api import QuantumInspireAPI
@@ -24,8 +26,13 @@ qubits = engine.allocate_qureg(5)
 q1 = qubits[0]
 q2 = qubits[-1]
 
-H | q1  # apply a Hadamard gate
-CNOT | (q1, q2)
+# Prepare a random state
+StatePreparation([(x := random.uniform(0, 1)), (y := math.sqrt(1 - x*x))]) | q2
+print(f"original state: {x} {y}")
+
+H | q1
+CZ | (q1, q2)
+H | q1
 All(Measure) | qubits  # measure the qubits
 
 engine.flush()  # flush all gates (and execute measurements)
