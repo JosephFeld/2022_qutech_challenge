@@ -1,0 +1,93 @@
+version 1.0
+qubits 5
+
+map q[0], datac
+map q[1], datab
+map q[2], dataa
+map q[3], pa
+map q[4], pb
+
+.Encoding
+cnot dataa,datab
+cnot dataa,datac
+	
+.Introduce_Error
+x datab
+
+.Error_Detection
+cnot dataa,pa
+cnot dataa,pb
+swap q[2],pa
+cnot datab,q[2]
+swap q[2],pa
+swap q[2],pb
+cnot datac,q[2]
+swap q[2],pb
+#measure q[3,4]
+
+.toffoli_a
+H dataa
+CNOT pb,dataa
+Tdag dataa
+CNOT pa,dataa
+T dataa
+CNOT pb,dataa
+Tdag dataa
+CNOT pa,dataa
+T pb
+T dataa
+H dataa
+SWAP q[2],pa
+CNOT q[2],pb
+T q[2]
+Tdag pb
+CNOT q[2],pb
+SWAP q[2],pa
+
+.toffoli_b
+X pb
+swap dataa,datab
+H dataa
+CNOT pb,dataa
+Tdag dataa
+CNOT pa,dataa
+T dataa
+CNOT pb,dataa
+Tdag dataa
+CNOT pa,dataa
+T pb
+T dataa
+H dataa
+SWAP q[2],pa
+CNOT q[2],pb
+T q[2]
+Tdag pb
+CNOT q[2],pb
+SWAP q[2],pa
+SWAP dataa,datab
+
+.toffoli_c
+X pb
+X pa
+swap dataa,datac
+H dataa
+CNOT pb,dataa
+Tdag dataa
+CNOT pa,dataa
+T dataa
+CNOT pb,dataa
+Tdag dataa
+CNOT pa,dataa
+T pb
+T dataa
+H dataa
+SWAP q[2],pa
+CNOT q[2],pb
+T q[2]
+Tdag pb
+CNOT q[2],pb
+SWAP q[2],pa
+SWAP dataa,datac
+X pa
+.Measurement
+#measure_all
