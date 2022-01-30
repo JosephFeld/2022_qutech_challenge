@@ -24,6 +24,8 @@ far from optimal. Nevertheless, the bin containing the corrected error
 has a consistently higher probability than bins without corrected
 errors.
 
+![histogram results](error%20code%20histo.png)
+
 ## QPM Ordering
 
 The QPM ([Quantum Parity
