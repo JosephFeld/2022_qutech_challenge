@@ -2,7 +2,7 @@ SHELL  := /bin/bash
 
 run : *.py
 	@(                                                           \
-		source ./venv/bin/activate;                          \
+		[ -e venv ] && source ./venv/bin/activate;           \
 		./auth 'python ./sample.py'                          \
 	)
 
