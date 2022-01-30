@@ -13,7 +13,13 @@ The QPM ([Quantum Parity Measurement](https://en.wikipedia.org/wiki/Parity_measu
 
 #### Histograms
 
+##### Round 1
+
 ![CZ then CNOT histogram](cz%20then%20cnot%20histo.PNG)
+
+##### Round 2
+
+![CZ then CNOT histogram](cz%20then%20cnot%20round%202%20histo.PNG)
 
 ### CNOT then CZ circuit
 
@@ -21,7 +27,13 @@ The QPM ([Quantum Parity Measurement](https://en.wikipedia.org/wiki/Parity_measu
 
 #### Histograms
 
+##### Round 1
+
 ![CZ then CNOT histogram](cnot%20then%20cz%20histo.PNG)
+
+##### Round 2
+
+![CZ then CNOT histogram](CNOT%20then%20CZ%20round%202%20histo.PNG)
 
 ### Analysis
 
