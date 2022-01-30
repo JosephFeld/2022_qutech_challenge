@@ -3,17 +3,38 @@
 
 ## Implementing a 3-qubit bit flip code
 
-We implemented a 3-qubit error correcting code in ```encode```. This ended up being a nontrivial project since only 2-qubit gates involving qubit #2 can be done on the starmon-5, so we had to add SWAP gates to move qubits to position 2 as necessary.  
+We implemented a 3-qubit error correcting code in `encode`. This
+ended up being a nontrivial project since only 2-qubit gates involving
+qubit #2 can be done on the starmon-5, so we had to add SWAP gates to
+move qubits to position 2 as necessary.
 
-The standard 3-qubit code has 3 classically controlled X gates based on measurements, but the starmon-5 can only do a single round of measurement. Instead, we used CNOT gates and one measurement of the whole system at the end.  
+The standard 3-qubit code has 3 classically controlled X gates based
+on measurements, but the starmon-5 can only do a single round of
+measurement. Instead, we used CNOT gates and one measurement of the
+whole system at the end.
 
-The built-in toffoli gate is unable to run on the starmon-5, so we built our own out of 2-qubit gates.
+The built-in toffoli gate is unable to run on the starmon-5, so we
+built our own out of 2-qubit gates.
 
-
+The resulting circuit gives the optimal desired behaviour when run on
+a simulator. When any of the three data bits are subjected to a single
+flip error (X), the error is corrected. Because of the noise of
+running such a complex circuit on a physical machine, the behaviour is
+far from optimal. Nevertheless, the bin containing the corrected error
+has a consistently higher probability than bins without corrected
+errors.
 
 ## QPM Ordering
 
-The QPM ([Quantum Parity Measurement](https://en.wikipedia.org/wiki/Parity_measurement)) is an important component of the 5-qubit error correcting code. We don't have enough qubits on the starmon-5 to implement the full 5-qubit code's parity measurement, so we investigated a simple case of 2 qubits: using a controlled X on the first qubit and a controlled Z on the second. These operations are commutative, so we can swap them without changing the actual logic. However, perhaps these could have an effect on the noise. Here are the results from our comparison:  
+The QPM ([Quantum Parity
+Measurement](https://en.wikipedia.org/wiki/Parity_measurement)) is an
+important component of the 5-qubit error correcting code. We don't
+have enough qubits on the starmon-5 to implement the full 5-qubit
+code's parity measurement, so we investigated a simple case of 2
+qubits: using a controlled X on the first qubit and a controlled Z on
+the second. These operations are commutative, so we can swap them
+without changing the actual logic. However, perhaps these could have
+an effect on the noise. Here are the results from our comparison:
 
 ### CZ then CNOT circuit
 
@@ -45,9 +66,17 @@ The QPM ([Quantum Parity Measurement](https://en.wikipedia.org/wiki/Parity_measu
 
 ### Analysis
 
-When we look at the incidence of the clearly incorrect results, the CZ then CNOT case does slightly better, but we doubt that it's statistically signifcant.  
-
+When we look at the incidence of the clearly incorrect results, the CZ
+then CNOT case does slightly better, but we doubt that it's
+statistically signifcant.
 
 ## Bulk experiment running
 
-In ```bulk_experiment.py```, you can define an experiment by putting the circuit in the definition of ```experiment()```. Then you can select the number of runs by setting the value of ```num_rums```. The script will then do that number of experiments and combine the results of all the experiments into one probability distribution. This allows you to get results with more statistical significance while still having the shot cap on an individual experiment.
+In `bulk_experiment.py`, you can define an experiment by putting
+the circuit in the definition of `experiment()`. Then you can
+select the number of runs by setting the value of `num_rums`. The
+script will then do that number of experiments and combine the results
+of all the experiments into one probability distribution. This allows
+you to get results with more statistical significance while still
+having the shot cap on an individual experiment.
+
