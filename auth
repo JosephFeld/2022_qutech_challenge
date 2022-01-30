@@ -1,0 +1,8 @@
+#!/usr/bin/expect
+
+set email  [exec head -n 1 ./.credentials]
+set psswd  [exec tail -n 1 ./.credentials]
+eval spawn [lindex $argv 0]
+expect "email:"    { send "$email\r" }
+expect "Password:" { send "$psswd\r" }
+interact
