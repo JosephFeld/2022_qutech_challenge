@@ -3,9 +3,11 @@
 
 ## Implementing a 3-qubit bit flip code
 
-We implemented a 3-qubit error correcting code. This ended up being a nontrivial project since only 2-qubit gates involving qubit #2 can be done on the starmon-5, so we had to add SWAP gates to move qubits to position 2 as necessary.  
+We implemented a 3-qubit error correcting code in ```encode```. This ended up being a nontrivial project since only 2-qubit gates involving qubit #2 can be done on the starmon-5, so we had to add SWAP gates to move qubits to position 2 as necessary.  
 
 The standard 3-qubit code has 3 classically controlled X gates based on measurements, but the starmon-5 can only do a single round of measurement. Instead, we used CNOT gates and one measurement of the whole system at the end.  
+
+The built-in toffoli gate is unable to run on the starmon-5, so we built our own out of 2-qubit gates.
 
 
 
