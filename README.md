@@ -1,6 +1,12 @@
 # Quantum Error Correction
 #### David Vulakh, Anna Rose Osofsky, Jacob Prtizker, Joseph Feld
 
+## Implementing a 3-qubit bit flip code
+
+We implemented a 3-qubit error correcting code. This ended up being a nontrivial project since only 2-qubit gates involving qubit #2 can be done on the starmon-5, so we had to add SWAP gates to move qubits to position 2 as necessary.  
+
+The standard 3-qubit code has 3 classically controlled X gates based on measurements, but the starmon-5 can only do a single round of measurement. Instead, we used CNOT gates and one measurement of the whole system at the end.  
+
 
 
 ## QPM Ordering
@@ -37,7 +43,7 @@ The QPM ([Quantum Parity Measurement](https://en.wikipedia.org/wiki/Parity_measu
 
 ### Analysis
 
-In the 4 clearly erroneous measurements, the CNOT then CZ case has a higher incidence of all except one, so it appears doing the CZ then CNOT is better in this case.    
+When we look at the incidence of the clearly incorrect results, the CZ then CNOT case does slightly better, but we doubt that it's statistically signifcant.  
 
 
 ## Bulk experiment running
